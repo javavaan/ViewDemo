@@ -8,6 +8,7 @@
     tools:context="com.dgtech.sss.viewdemo.MainActivity">
 
     <com.dgtech.sss.viewdemo.RulerView
+        android:visibility="gone"
         android:id="@+id/ruler"
         app:minScale="0"
         app:maxScale="50"
@@ -19,11 +20,21 @@
         android:text="cSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawView"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
-    <TextView
-        android:id="@+id/result"
-        android:textSize="30sp"
-        android:padding="10dp"
-        android:text="结果"
+    <com.dgtech.sss.viewdemo.WaveView
+        android:id="@+id/wave"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <Button
+        android:id="@+id/add"
+        android:layout_alignParentBottom="true"
+        android:text="+"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/min"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
