@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 if (degree<=0){
                     degree = 0;
                 }
+                Toast.makeText(MainActivity.this,degree+"",Toast.LENGTH_SHORT).show();
                 waveView.setDegree(degree);
                 break;
            /* case R.id.bt_start:

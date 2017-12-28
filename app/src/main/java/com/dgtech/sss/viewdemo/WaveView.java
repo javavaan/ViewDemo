@@ -45,6 +45,8 @@ public class WaveView extends View implements View.OnClickListener {
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
         paint.setColor(Color.BLUE);
+        paint.setTextSize(80);
+        paint.setTextAlign(Paint.Align.CENTER);
 
 
         this.setOnClickListener(this);
@@ -62,8 +64,13 @@ public class WaveView extends View implements View.OnClickListener {
         this.offsetX = offsetX;
         //offsetY越来越小,实现波纹变平静的效果
 //        offsetY=offsetYDefault-animCount*10;
-        if (offsetY <= 20) {
+        if (offsetY <= 20 && offsetY > 0) {
             offsetY = 20;
+        } else if (offsetY <= 0) {
+            offsetY = 0;
+        }
+        if (degree >= 1) {
+            offsetY = 0;
         }
         invalidate();
     }
@@ -71,21 +78,34 @@ public class WaveView extends View implements View.OnClickListener {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        paint.setColor(Color.BLUE);
         waveLen = getMeasuredWidth();
         //重点就是在该view的可见区域左侧画一个和可见区域一样的正弦或者余弦图,图形向右移动即可实现波浪效果
         path.reset();
         int centerY = (int) (getMeasuredHeight() * (1 - degree));
         path.moveTo(-getMeasuredWidth() + offsetX, centerY);
+        //2条正弦曲线,屏幕上一条,屏幕左侧一条
         path.cubicTo(offsetX - waveLen / 2, centerY - offsetY, offsetX - waveLen / 2, centerY + offsetY, offsetX + 0, centerY);
         path.cubicTo(offsetX + waveLen / 2, centerY - offsetY, offsetX + waveLen / 2, centerY + offsetY, offsetX + waveLen, centerY);
+        //正弦曲线下方的正方形
         path.lineTo(waveLen, (float) (getMeasuredHeight()));
         path.lineTo(0, (float) (getMeasuredHeight()));
         path.close();
         canvas.drawPath(path, paint);
+        //水量百分比
+        String text = (int) (degree * 100) + "%";
+        int textHeight = (int) (paint.getFontMetrics().bottom - paint.getFontMetrics().top);
+        //根据水量的多少来改变文字颜色
+        if (centerY < getMeasuredHeight() / 2 - textHeight) {
+            paint.setColor(Color.WHITE);
+        } else {
+            paint.setColor(Color.BLACK);
+        }
+        canvas.drawText(text, getMeasuredWidth() / 2, getMeasuredHeight() / 2, paint);
         //如果用户还没有执行过动画,就执行动画
-        if (ifNoAnim){
+        if (ifNoAnim) {
             ifNoAnim = false;
-            offsetY=offsetYDefault;
+            offsetY = offsetYDefault;
             animator = ObjectAnimator.ofInt(this, "offsetX", 0, waveLen).setDuration(durTiem);
             animator.setRepeatCount(-1);
             animator.setInterpolator(new LinearInterpolator());
@@ -143,10 +163,22 @@ public class WaveView extends View implements View.OnClickListener {
     };
 
     public void setDegree(float degree) {
+
         ifNoAnim = false;
         this.clearAnimation();
         this.degree = degree;
         offsetY = offsetYDefault;
+
+        if (degree >= 1) {
+            degree = (float) 1.0;
+            offsetY = 0;
+        }
+        //这个时候不需要波纹
+        if (((int) (degree * 100)) <= 1) {
+            offsetY = 0;
+        } else {
+
+        }
         invalidate();
         if (animator == null) {
             animator = ObjectAnimator.ofInt(this, "offsetX", 0, waveLen).setDuration(durTiem);
