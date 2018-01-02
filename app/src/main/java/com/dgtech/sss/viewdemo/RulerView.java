@@ -105,15 +105,16 @@ public class RulerView extends View {
         paint.setStrokeWidth(5);
         paint.setTextSize(60);
         paint.setColor(Color.parseColor("#2200ff00"));
-        int allNum = getMeasuredWidth()/smallWidth;//最多刻度数
-        rightScale = maxScale-defaultScale;//中间刻度右侧还有多少个刻度
-        leftScale = defaultScale-minScale;//中间刻度左侧还有多少个刻度
-        leftNum = allNum/2;
-        rightNum = allNum - leftNum;
+        rightScale = maxScale-defaultScale;//中间刻度右侧还有多少刻度
+        leftScale = defaultScale-minScale;//中间刻度左侧还有多少刻度
+
+        int allNum = getMeasuredWidth()/smallWidth;//这把尺子最多能显示多少个刻度数
+        leftNum = allNum/2;//左半部分最多有多少个刻度
+        rightNum = allNum - leftNum;//右半部分最多有多少个刻度
         int defaultStart = defaultScale- leftNum;
-        start = defaultStart-moveScaleNum;
-        int defaultEnd = defaultScale+ rightNum;
-        end = defaultEnd-moveScaleNum;
+        start = defaultStart-moveScaleNum;//从哪个刻度开始画
+        int defaultEnd = defaultScale+ rightNum;//default指的是没有滑动的时候的值
+        end = defaultEnd-moveScaleNum;//画到哪个刻度截止
         if (start<minScale){
             startX=-(start-minScale)*smallWidth;
         }else {
@@ -169,6 +170,8 @@ public class RulerView extends View {
 
     }
 
+    //滑动无非就是左右滑动,我们能获取到手指左右滑动的距离,根据这个距离还有尺子的最小刻度间距离
+    //可以获得手指向右或者向左滑动了多少个刻度,也就是moveScaleNum,根据这个值去计算Start和end即可
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         velocityTracker.computeCurrentVelocity(500);
