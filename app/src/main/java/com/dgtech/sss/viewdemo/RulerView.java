@@ -82,7 +82,7 @@ public class RulerView extends View {
         setMeasuredDimension(w, h);
     }
 
-    private int smallScaleNum = 10;//大刻度间的小刻度数
+    private int smallScaleNum = 5;//大刻度间的小刻度数
     private int startX;
     private int bigY = 40;//大刻度长度
     private int smaleY = 20;
@@ -90,11 +90,16 @@ public class RulerView extends View {
     private int start = minScale;//开始画的刻度
     private int end = maxScale;//结束画刻度
 
+    private int totalMove = 0;//总的移动量
+    private int moveScaleNum=0;//一共移动多少刻度,大于0说明向右滑动
+    private int fromX=0;
+    private int xSpeed;//x方向速度
+    private VelocityTracker velocityTracker = VelocityTracker.obtain();
+    ValueAnimator animator = new ValueAnimator();
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //画背景
-        paint.setColor(Color.RED);
         paint.setStyle(Paint.Style.FILL);
         paint.setTextAlign(Paint.Align.CENTER);
         paint.setStrokeWidth(5);
@@ -131,11 +136,11 @@ public class RulerView extends View {
         //画刻度
         for (int i = start;  i<= end; i++) {
             paint.setColor(Color.parseColor("#919191"));
-            if (i%10==0){
+            if (i%smallScaleNum==0){
                 //长刻度
                 canvas.drawLine(startX,getMeasuredHeight()/2,startX,getMeasuredHeight()/2+bigY,paint);
                 paint.setColor(Color.BLACK);
-                canvas.drawText(i/10+"",startX,getMeasuredHeight()/2+bigY+60,paint);
+                canvas.drawText(i/smallScaleNum+"",startX,getMeasuredHeight()/2+bigY+60,paint);
             }else {
                 //短刻度
                 canvas.drawLine(startX,getMeasuredHeight()/2,startX,getMeasuredHeight()/2+smaleY,paint);
@@ -149,7 +154,7 @@ public class RulerView extends View {
         //文字
         paint.setColor(Color.BLACK);
         paint.setTextSize(80);
-        double d = (defaultScale-moveScaleNum)*0.1f;
+        double d = (defaultScale-moveScaleNum)*1.0/smallScaleNum;
         paint.setTextAlign(Paint.Align.CENTER);
         String result = String .format("%.1f",d);
         if (listener!=null){
@@ -164,12 +169,6 @@ public class RulerView extends View {
 
     }
 
-    private int totalMove = 0;//总的移动量
-    private int moveScaleNum=0;//一共移动多少刻度,大于0说明向右滑动
-    private int fromX=0;
-    private int xSpeed;//x方向速度
-    private VelocityTracker velocityTracker = VelocityTracker.obtain();
-    ValueAnimator animator = new ValueAnimator();
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         velocityTracker.computeCurrentVelocity(500);

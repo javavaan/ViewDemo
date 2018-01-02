@@ -17,11 +17,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
         findViewById(R.id.add).setOnClickListener(this);
         findViewById(R.id.min).setOnClickListener(this);
-        /*circleView = findViewById(R.id.time);
+        circleView = findViewById(R.id.time);
         findViewById(R.id.bt_start).setOnClickListener(this);
         findViewById(R.id.bt_stop).setOnClickListener(this);
         findViewById(R.id.bt_pause).setOnClickListener(this);
-        findViewById(R.id.bt_set).setOnClickListener(this);*/
+        findViewById(R.id.bt_set).setOnClickListener(this);
 //        final TextView result = findViewById(R.id.result);
 //        RulerView rulerView = findViewById(R.id.ruler);
 //        rulerView.setListener(new RulerView.ScaleListener() {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 Toast.makeText(MainActivity.this,degree+"",Toast.LENGTH_SHORT).show();
                 waveView.setDegree(degree);
                 break;
-           /* case R.id.bt_start:
+            case R.id.bt_start:
                 circleView.start();
                 break;
             case R.id.bt_pause:
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 break;
             case R.id.bt_set:
                 circleView.setTime(10,22,33);
-                break;*/
+                break;
         }
     }
 }

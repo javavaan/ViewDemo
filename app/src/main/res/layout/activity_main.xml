@@ -8,7 +8,7 @@
     tools:context="com.dgtech.sss.viewdemo.MainActivity">
 
     <com.dgtech.sss.viewdemo.RulerView
-        android:visibility="gone"
+        android:visibility="visible"
         android:id="@+id/ruler"
         app:minScale="0"
         app:maxScale="50"
@@ -20,45 +20,57 @@
         android:text="cSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawViewSample02BeforeOnDrawView"
         android:layout_width="match_parent"
         android:layout_height="200dp" />
-    <com.dgtech.sss.viewdemo.WaveView
+    <com.dgtech.sss.viewdemo.CircleWaveView
         android:id="@+id/wave"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
     <Button
+        android:visibility="gone"
         android:id="@+id/add"
         android:layout_alignParentBottom="true"
         android:text="+"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
+        android:visibility="gone"
         android:id="@+id/min"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:text="_"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <com.dgtech.sss.viewdemo.ClockView
+        android:id="@+id/time"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-   <!-- <Button
+    <Button
+        android:visibility="gone"
         android:id="@+id/bt_start"
         android:text="开始"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
+        android:visibility="gone"
         android:layout_toRightOf="@+id/bt_start"
         android:id="@+id/bt_pause"
         android:text="暂停"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
+        android:visibility="gone"
         android:layout_toRightOf="@+id/bt_pause"
         android:id="@+id/bt_stop"
         android:text="初始化"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
+        android:visibility="gone"
         android:layout_toRightOf="@+id/bt_stop"
         android:id="@+id/bt_set"
         android:text="设置"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />-->
+        android:layout_height="wrap_content" />
 </RelativeLayout>
