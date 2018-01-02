@@ -170,7 +170,7 @@ public class RulerView extends View {
 
     }
 
-    //滑动无非就是左右滑动,我们能获取到手指左右滑动的距离,根据这个距离还有尺子的最小刻度间距离
+    //滑动无非就是左右滑动,我们能获取到手指左右滑动的距离,根据这个距离还有尺子的刻度间距离
     //可以获得手指向右或者向左滑动了多少个刻度,也就是moveScaleNum,根据这个值去计算Start和end即可
     @Override
     public boolean onTouchEvent(MotionEvent event) {
