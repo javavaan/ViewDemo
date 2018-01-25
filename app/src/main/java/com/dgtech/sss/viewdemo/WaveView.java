@@ -125,18 +125,7 @@ public class WaveView extends View implements View.OnClickListener {
         }
 
         //两种方法都行
-       *//* ValueAnimator animator = ValueAnimator.ofInt(0, waveLen);
-        animator.setDuration(1000);
-        animator.setRepeatCount(ValueAnimator.INFINITE);
-        animator.setInterpolator(new LinearInterpolator());
-        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                offsetX = (int) animation.getAnimatedValue();
-                postInvalidate();
-            }
-        });
-        animator.start();*//*
+       **//*
         return true;
     }*/
 

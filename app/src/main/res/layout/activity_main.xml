@@ -8,7 +8,7 @@
     tools:context="com.dgtech.sss.viewdemo.MainActivity">
 
     <com.dgtech.sss.viewdemo.RulerView
-        android:visibility="visible"
+        android:visibility="gone"
         android:id="@+id/ruler"
         app:minScale="0"
         app:maxScale="50"
@@ -73,4 +73,8 @@
         android:text="设置"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <com.dgtech.sss.viewdemo.MiClock
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </RelativeLayout>
