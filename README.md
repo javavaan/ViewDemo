@@ -22,4 +22,5 @@
 
 ![Image text](https://github.com/javavaan/img/blob/master/clockview.gif?raw=true)
 ### 效果五:MIClock
+指针扫到的地方有个颜色的变化,看不太清楚
 ![Image text](https://github.com/javavaan/img/blob/master/screencapture-1516934193939.gif?raw=true)
