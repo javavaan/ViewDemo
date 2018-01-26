@@ -21,3 +21,5 @@
 哈哈哈,随便玩玩
 
 ![Image text](https://github.com/javavaan/img/blob/master/clockview.gif?raw=true)
+### 效果五:MIClock
+![Image text](https://github.com/javavaan/img/blob/master/screencapture-1516934193939.gif?raw=true)
