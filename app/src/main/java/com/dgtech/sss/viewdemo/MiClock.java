@@ -15,6 +15,8 @@ import android.view.View;
 
 /**
  * Created by sss on 2018/1/25.
+ * onDraw方法中用了canvas的translate和rotate方法,这样操作画布的目的一是为了显示的更加好看,二是为了方便画
+ * 主要练习指针扫过区域颜色渐变
  */
 
 public class MiClock extends View {
@@ -140,7 +142,7 @@ public class MiClock extends View {
                     paint.setColor(Color.parseColor("#c6c607"));
                 } else if (i == degree2 - 3) {
                     paint.setColor(Color.parseColor("#aeae06"));
-                } else if (degree / 360 > 0) {
+                } else if (degree > 360) {
                     if (i == 0) {
                         paint.setColor(Color.parseColor("#848403"));
                     } else {
@@ -156,7 +158,7 @@ public class MiClock extends View {
                     paint.setColor(Color.parseColor("#dcdc08"));
                 } else if (i == degree2 - 2) {
                     paint.setColor(Color.parseColor("#c6c607"));
-                } else if (degree / 360 > 0) {
+                } else if (degree > 360) {
                     if (i == 0) {
                         paint.setColor(Color.parseColor("#aeae06"));
                     } else if (i == 359) {
@@ -172,7 +174,7 @@ public class MiClock extends View {
                     paint.setColor(Color.parseColor("#ffff00"));
                 } else if (i == degree2 - 1) {
                     paint.setColor(Color.parseColor("#dcdc08"));
-                } else if (degree / 360 > 0) {
+                } else if (degree > 360) {
                     if (i == 0) {
                         paint.setColor(Color.parseColor("#c6c607"));
                     } else if (i == 359) {
@@ -188,7 +190,7 @@ public class MiClock extends View {
             } else if (degree2 >= 1) {
                 if (i == degree2) {
                     paint.setColor(Color.parseColor("#ffff00"));
-                } else if (degree / 360 > 0) {
+                } else if (degree > 360) {
                     if (i == 0) {
                         paint.setColor(Color.parseColor("#dcdc08"));
                     } else if (i == 359) {
@@ -203,18 +205,22 @@ public class MiClock extends View {
                 } else {
                     paint.setColor(Color.parseColor("#717105"));
                 }
-            } else if (degree2 == 0 && degree / 360 > 0) {
-                degree2 = 359;
-                if (i == degree2) {
-                    paint.setColor(Color.parseColor("#ffff00"));
-                } else if (i == degree2 - 1) {
-                    paint.setColor(Color.parseColor("#dcdc08"));
-                } else if (i == degree2 - 2) {
-                    paint.setColor(Color.parseColor("#c6c607"));
-                } else if (i == degree2 - 3) {
-                    paint.setColor(Color.parseColor("#aeae06"));
-                } else if (i == degree2 - 4) {
-                    paint.setColor(Color.parseColor("#848403"));
+            } else if (degree2 == 0) {
+                degree2 = 360;
+                if (degree > 0) {
+                    if (i == 0) {
+                        paint.setColor(Color.parseColor("#ffff00"));
+                    } else if (i == degree2 - 1) {
+                        paint.setColor(Color.parseColor("#dcdc08"));
+                    } else if (i == degree2 - 2) {
+                        paint.setColor(Color.parseColor("#c6c607"));
+                    } else if (i == degree2 - 3) {
+                        paint.setColor(Color.parseColor("#aeae06"));
+                    } else if (i == degree2 - 4) {
+                        paint.setColor(Color.parseColor("#848403"));
+                    } else {
+                        paint.setColor(Color.parseColor("#717105"));
+                    }
                 } else {
                     paint.setColor(Color.parseColor("#717105"));
                 }
@@ -263,7 +269,6 @@ public class MiClock extends View {
         canvas.drawLine(startX1, startY1, endX1, endY1, paint);
         paint.setStrokeWidth(12);
         canvas.drawLine(startX2, startY2, endX2, endY2, paint);
-
 
     }
 
