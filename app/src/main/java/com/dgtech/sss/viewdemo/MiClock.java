@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -20,6 +19,9 @@ import android.view.View;
  */
 
 public class MiClock extends View {
+
+    private Paint paint;
+
     public MiClock(Context context) {
         this(context, null);
     }
@@ -30,6 +32,8 @@ public class MiClock extends View {
 
     public MiClock(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        paint = new Paint();
+
     }
 
     @Override
@@ -87,8 +91,7 @@ public class MiClock extends View {
         int d = measuredWidth <= measuredHeight ? measuredWidth : measuredHeight;
         d = d - 200;
         //圆心
-        Point center = new Point(measuredWidth / 2, measuredHeight / 2);
-        Paint paint = new Paint();
+//        Point center = new Point(measuredWidth / 2, measuredHeight / 2);
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
         paint.setTextAlign(Paint.Align.CENTER);

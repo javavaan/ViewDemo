@@ -12,6 +12,9 @@ import android.util.AttributeSet;
  */
 
 public class CircleWaveView extends WaveView {
+
+    private Path path;
+
     public CircleWaveView(Context context) {
         this(context,null);
     }
@@ -22,6 +25,7 @@ public class CircleWaveView extends WaveView {
 
     public CircleWaveView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        path = new Path();
     }
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -49,7 +53,7 @@ public class CircleWaveView extends WaveView {
     }
     @Override
     protected void onDraw(Canvas canvas) {
-        Path path = new Path();
+
         int width = getMeasuredWidth();
         path.addCircle(width/2,width/2,width/2, Path.Direction.CW);
         canvas.clipPath(path);
